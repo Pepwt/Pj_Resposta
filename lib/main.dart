@@ -4,23 +4,40 @@ import './resposta.dart';
 
 void main() => runApp(PerguntaApp());
 
-class PerguntaAppState extends State<PerguntaApp>{
+class _PerguntaAppState extends State<PerguntaApp>{
   
-  var perguntaSelecionada = 0;
+  var _perguntaSelecionada = 0;
 
-  void responder() {
+  void _responder() {
     setState(() {
-    perguntaSelecionada++;
+    _perguntaSelecionada++;
     });
-    print(perguntaSelecionada);
+    print(_perguntaSelecionada);
   }
   
   @override
   Widget build(BuildContext context) {
-    final perguntas = [
-      'Qual é a sua cor favorita?',
-      'Qual é o seu animal favorito?',
+    final List<Map<String, Object>>perguntas = [
+      {
+       'texto': 'Qual é a sua cor favorita?',
+       'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+      },
+      {
+        'texto': 'Qual é o seu animal favorito?',
+       'respostas': ['Coelho', 'Cobre', 'Elefante', 'Leão'],
+
+      },
+      {
+         'texto' : 'Qual é o seu instrutor favorito?',
+         'respostas' : ['Maria', 'João', 'Leo', 'Pedro'],
+      }
+        
     ];
+
+   for (var textoResp in perguntas[_perguntaSelecionada]['respostas'] as List<String>) {
+  print(textoResp);
+}
+
 
     return MaterialApp(
       home: Scaffold(
@@ -29,10 +46,10 @@ class PerguntaAppState extends State<PerguntaApp>{
         ),
         body: Column(
           children: <Widget>[
-            Questao(perguntas[perguntaSelecionada]),
-            Resposta('Resposta 1'),
-            Resposta('Resposta 2'),
-            Resposta('Resposta 3'),
+            Questao(perguntas[_perguntaSelecionada]['texto']as String),
+            Resposta('Resposta 1',_responder),
+            Resposta('Resposta 2',_responder),
+            Resposta('Resposta 3',_responder),
           ],
         ),
       ),
@@ -43,8 +60,8 @@ class PerguntaAppState extends State<PerguntaApp>{
 class PerguntaApp extends StatefulWidget {
 
   
-  PerguntaAppState createState() {
-    return PerguntaAppState();
+  _PerguntaAppState createState() {
+    return _PerguntaAppState();
   }
  // void Function() funQRetornaUmaOutraFun(){
   //  return(){
