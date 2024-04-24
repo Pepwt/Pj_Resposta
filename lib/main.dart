@@ -34,9 +34,14 @@ class _PerguntaAppState extends State<PerguntaApp>{
         
     ];
 
-   for (var textoResp in perguntas[_perguntaSelecionada]['respostas'] as List<String>) {
-  print(textoResp);
-}
+List<String> respostas = perguntas[_perguntaSelecionada]['respostas'] as List<String>;
+List<Widget> widgets = respostas
+.map((t) => Resposta(t, _responder))
+.toList();
+
+  // for(String textoResp in perguntas[_perguntaSelecionada]['respostas'] as List<String>) {
+  //widgets.add(Resposta(textoResp, _responder));
+//}
 
 
     return MaterialApp(
@@ -47,9 +52,7 @@ class _PerguntaAppState extends State<PerguntaApp>{
         body: Column(
           children: <Widget>[
             Questao(perguntas[_perguntaSelecionada]['texto']as String),
-            Resposta('Resposta 1',_responder),
-            Resposta('Resposta 2',_responder),
-            Resposta('Resposta 3',_responder),
+           ...respostas.map((t) => Resposta(t, _responder)).toList(),
           ],
         ),
       ),
@@ -63,10 +66,6 @@ class PerguntaApp extends StatefulWidget {
   _PerguntaAppState createState() {
     return _PerguntaAppState();
   }
- // void Function() funQRetornaUmaOutraFun(){
-  //  return(){
-  //  print('Pergunta respondida #02');
-  //  };
- // }
+
 
 }
