@@ -1,6 +1,8 @@
 # projeto_perguntas
 
-A new Flutter project.
+Esse projeto foi criado com o intuito de aprimorar minhas habilidades em Flutter.
+
+Adicionado pontuação as respostas
 
 ## Getting Started
 
