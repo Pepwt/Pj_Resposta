@@ -12,8 +12,8 @@ class Resposta extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.deepPurpleAccent), // Define a cor de fundo
-          foregroundColor: MaterialStateProperty.all<Color>(Colors.purple), // Define a cor do texto
+          backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 77, 255, 228)), // Define a cor de fundo
+          foregroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 176, 39, 171)), // Define a cor do texto
         ),
         onPressed: quandoSelecionado,
         child: Text(texto),
