@@ -11,42 +11,51 @@ class PerguntaApp extends StatefulWidget {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  var _pontuacaoTotal = 0;
   final _perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
       'respostas': [
-        {'texto': 'Preto', 'nota': 10},
-        {'texto': 'Vermelho', 'nota': 5},
-        {'texto': 'Verde', 'nota': 3},
-        {'texto': 'Branco', 'nota': 15},
+        {'texto': 'Preto', 'pontuacao': 8},
+        {'texto': 'Vermelho', 'pontuacao': 5},
+        {'texto': 'Verde', 'pontuacao': 3},
+        {'texto': 'Branco', 'pontuacao': 7},
       ],
     },
     {
       'texto': 'Qual é o seu animal favorito?',
       'respostas': [
-        {'texto': 'Coelho', 'nota': 1},
-        {'texto': 'Cobra', 'nota': 10},
-        {'texto': 'Elefante', 'nota': 6},
-        {'texto': 'Leão', 'nota': 12},
+        {'texto': 'Coelho', 'pontuacao': 1},
+        {'texto': 'Cobra', 'pontuacao': 4},
+        {'texto': 'Elefante', 'pontuacao': 6},
+        {'texto': 'Leão', 'pontuacao': 10},
       ],
     },
     {
       'texto': 'Qual é o seu instrutor favorito?',
       'respostas': [
-        {'texto':'Maria', 'nota': 7},
-        {'texto':'João', 'nota': 2},
-        {'texto':'Luiza', 'nota': 15},
-        {'texto':'Pedro', 'nota': 15},
+        {'texto': 'Maria', 'pontuacao': 4},
+        {'texto': 'João', 'pontuacao': 2},
+        {'texto': 'Luiza', 'pontuacao': 5},
+        {'texto': 'Pedro', 'pontuacao': 8},
       ],
     }
   ];
 
-  void _responder() {
+  void _responder(int pontuacao) {
     if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
       });
     }
+  }
+
+  void _reiniciarQuestionario(){
+    setState(() {
+      _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
+    });
   }
 
   bool get temPerguntaSelecionada {
@@ -65,7 +74,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
                 perguntas: _perguntas,
                 perguntaSelecionada: _perguntaSelecionada,
                 quandoResponder: _responder)
-            : Resultado(),
+            : Resultado(_pontuacaoTotal, _reiniciarQuestionario),
       ),
     );
   }
